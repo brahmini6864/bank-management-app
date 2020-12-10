@@ -1,0 +1,31 @@
+<nav class="navbar navbar-light bg-light">
+	<span class="navbar-brand mb-0 h1">Bank of Xactware</span>
+</nav>
+<div class="row m-2">
+	<div class="col-sm-12">
+		<h6 class="mb-2 mt-4">TRANSACTION HISTORY</h6>
+		<table class="table table-striped mt-4 table-sm table-bordered">
+			<thead>
+				<tr>
+					<th scope="col">TYPE</th>
+					<th scope="col">DATE</th>
+					<th scope="col">AMOUNT</th>
+					<th scope="col">BALANCE</th>
+				</tr>
+			</thead>
+			<tbody *ngIf="transactionHistory.length">
+				<tr *ngFor="let item of transactionHistory">
+					<th  [ngClass]="item.type ==='Withdraw' ? 'col_red' : 'col_green'">{{item.type}}</th>
+					<td>{{item.transactionDate  | date :'short'}}</td>
+					<td>{{item.enteredAmout | currency}}</td>
+					<td>{{item.currentBalance | currency}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<div *ngIf="!transactionHistory.length" class="row justify-content-center">
+			<div class="col-sm-4">
+				<p>No Transaactions Available..!</p>
+			</div>
+		</div>
+	</div>
+</div>
